@@ -10,14 +10,18 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 print("API Key:", gemini_api_key)
 client = genai.Client(api_key=gemini_api_key)
 
-def email_resume(emails_list): 
+def email_resume(emails_list):
+  lista_de_resumos = []
   for numero, email in enumerate(emails_list):
     resposta = client.models.generate_content(
       model="gemini-2.5-flash",
-      contents=f"""Vou te mandar o corpo de um email, quero que você o 
+      contents=f"""Vou te mandar o corpo de um email, quero que você o
         resuma em apenas 1 linha, segue o email: {email}"""
       )
     print(f"Email {numero + 1}: {resposta.text}")
+    lista_de_resumos.append(f"Email {numero + 1}: {resposta.text}")
     print("-" * 50)
+
+  return lista_de_resumos
 
 email_resume(emails_corpo)
