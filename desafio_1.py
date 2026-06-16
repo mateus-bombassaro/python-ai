@@ -38,7 +38,7 @@ lista_de_dicionarios_de_respostas = []
 
 for pergunta in lista_desafio:
   resposta = client.models.generate_content(
-    model="gemini-2.5-flash",
+    model="gemini-3.1-flash-lite",
     contents=f"Gere uma resposta muito sucinta para a seguinte pergunta: {pergunta}"
   )
   lista_de_dicionarios_de_respostas.append({"pergunta": pergunta, "resposta": resposta.text})
